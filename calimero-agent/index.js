@@ -11,19 +11,10 @@ let pingInterval = null;
 
 const openai = new OpenAI();
 
-let BOT_ACCOUNT = "YOUR_BOT_NAME.near" // e.g. hackai.near
-let BOT_PRIVATE_KEY = "ed25519:BOTS_RAW_PRIVATE_KEY"
-let X_API_KEY = "PASTE_CALIMERO_API_KEY"
-
-if (process.env.BOT_ACCOUNT) {
-    BOT_ACCOUNT = process.env.BOT_ACCOUNT;
-}
-if (process.env.BOT_PRIVATE_KEY) {
-    BOT_PRIVATE_KEY = process.env.BOT_PRIVATE_KEY;
-}
-if (process.env.X_API_KEY) {
-    X_API_KEY = process.env.X_API_KEY;
-}
+const BOT_ACCOUNT = process.env.BOT_ACCOUNT ?? "YOUR_BOT_NAME.near" // e.g. hackai.near
+const BOT_PRIVATE_KEY = process.env.BOT_PRIVATE_KEY ?? "ed25519:BOTS_RAW_PRIVATE_KEY"
+const X_API_KEY = process.env.X_API_KEY ?? "PASTE_CALIMERO_API_KEY"
+const LLM_AGENT_URL = process.env.LLM_AGENT_URL ?? null;
 
 const CHANNEL = "askHackAI"
 const AES_KEY = "1ca1f53db35b3a2f13f9cd9d1ecad6062dd72b96876775a19a7683abc048ae31"
@@ -144,6 +135,15 @@ async function askChatGPT(question) {
     return completion.choices[0].message.content
   }
 
+async function askAgent(question) {
+    console.log("Asking Agent: ", question);
+    const response = await fetch(`${LLM_AGENT_URL}?query=${question}`);
+    const completion = await response.text();
+    console.log("Agent response is: ", completion);
+
+    return completion;
+}
+
 async function onMessage(data) {
     console.log(`Received message: ${data}`);
 
@@ -166,7 +166,7 @@ async function onMessage(data) {
         }
         console.log(inputForChatGPT);
 
-        let answer = await askChatGPT(inputForChatGPT);
+        let answer = await askAgent(inputForChatGPT); // await askChatGPT(inputForChatGPT);
 
         // Prepare for signing with Bot's priv key, and send the message
         const keyStore = new NearAPI.keyStores.InMemoryKeyStore();
