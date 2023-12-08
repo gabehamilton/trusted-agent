@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "export $(cat .env | xargs) && node index.js"
+    "dev": "export $(cat .env | xargs) && node index.js",
+    "testAgent": "export $(cat .env | xargs) && node testAgent.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
