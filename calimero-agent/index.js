@@ -11,10 +11,19 @@ let pingInterval = null;
 
 const openai = new OpenAI();
 
-const BOT_ACCOUNT = "YOUR_BOT_NAME.near" // e.g. hackai.near
-const BOT_PRIVATE_KEY = "ed25519:BOTS_RAW_PRIVATE_KEY"
+let BOT_ACCOUNT = "YOUR_BOT_NAME.near" // e.g. hackai.near
+let BOT_PRIVATE_KEY = "ed25519:BOTS_RAW_PRIVATE_KEY"
+let X_API_KEY = "PASTE_CALIMERO_API_KEY"
 
-const X_API_KEY = "PASTE_CALIMERO_API_KEY"
+if (process.env.BOT_ACCOUNT) {
+    BOT_ACCOUNT = process.env.BOT_ACCOUNT;
+}
+if (process.env.BOT_PRIVATE_KEY) {
+    BOT_PRIVATE_KEY = process.env.BOT_PRIVATE_KEY;
+}
+if (process.env.X_API_KEY) {
+    X_API_KEY = process.env.X_API_KEY;
+}
 
 const CHANNEL = "askHackAI"
 const AES_KEY = "1ca1f53db35b3a2f13f9cd9d1ecad6062dd72b96876775a19a7683abc048ae31"
