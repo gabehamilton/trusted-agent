@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "export $(cat .env | xargs) && node index.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "near-api-js": "^2.1.4",
+    "openai": "^4.20.1",
+    "util.promisify": "^1.1.2",
+    "ws": "^8.14.2"
+  }
+}
+
