@@ -1,0 +1,283 @@
+[
+    {
+        "name": "dataintegrity_testnet_flight_purchase",
+        "description": "The function is a flight purchase that requires to, account_id, origin, destination, and amount",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "to": {
+                    "type": "string"
+                },
+                "origin": {
+                    "type": "string"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type":"number"
+                }
+            },
+            "receiver_id": "dataintegrity.testnet",
+            "method_name": "flight_purchase",
+            "required":["to","origin","destination","amount"]
+        },
+        "reputation": 97.81
+    },
+    {
+        "name": "earn_kaiching_claim",
+        "description": "The function is a claim method that is used to earn kaiching. It takes a receiver ID and a parsed argument as input. The parsed argument includes a memo.",
+        "receiver_id": "earn.kaiching",
+        "method_name": "claim",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "memo": {
+                    "type": "string"
+                },
+                "rewards": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            },
+            "required":["memo"]
+        },
+        "reputation": 97.81
+    },
+    {
+        "name": "token_sweat_ft_transfer",
+        "description": "This function is used to transfer a certain amount of sweat tokens to a receiver with the specified ID. The method name for this is ft_transfer which takes in the receiver's ID, amount, and memo.",
+        "receiver_id": "token.sweat",
+        "method_name": "ft_transfer",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "receiver_id": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "memo": {
+                    "type": "string"
+                }
+            },
+            "required":["receiver_id","amount","memo"]
+        },
+        "reputation": 100.0
+    },
+    {
+        "name": "token_sweat_storage_deposit",
+        "description": "This function is a storage deposit method that is used to deposit tokens into a specific account identified by the receiver_id. The function takes the account_id as an argument and the tokens are deposited into the account.",
+        "receiver_id": "token.sweat",
+        "method_name": "storage_deposit",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                }
+            },
+            "required":["account_id"]
+        },
+        "reputation": 76.82
+    },
+    {
+        "name": "wallet_kaiching_storage_deposit",
+        "description": "This function is used to make a storage deposit to wallet.kaiching for a specified account_id.",
+        "receiver_id": "wallet.kaiching",
+        "method_name": "storage_deposit",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                }
+            },
+            "required":["account_id"]
+        },
+        "reputation": 46.29
+    },
+    {
+        "name": "wallet_kaiching_ft_transfer_call",
+        "description": "The function is a ft_transfer_call method using message, memo, amount, and receiver_id set to earn.kaiching.",
+        "receiver_id": "wallet.kaiching",
+        "method_name": "ft_transfer_call",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "receiver_id": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "memo": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            },
+            "required":["msg","memo","amount","receiver_id"]
+        },
+        "reputation": 28.15
+    },
+    {
+        "name": "tge_lockup_sweat_claim",
+        "description": "The function is a claim associated with the tge-lockup.sweat receiver. It takes no arguments.",
+        "receiver_id": "tge-lockup.sweat",
+        "method_name": "claim",
+        "parameters": {
+            "type": "object",
+            "properties": {}
+        },
+        "reputation": 75.54
+    },
+    {
+        "name": "token_sweat_ft_transfer_call",
+        "description": "This function is used to transfer a specified amount of sweat tokens to a receiver with the ID jars.sweat using the method ft_transfer_call. The function takes the receiver ID and the amount of tokens as arguments.",
+        "receiver_id": "token.sweat",
+        "method_name": "ft_transfer_call",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "receiver_id": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "memo": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            },
+            "required":["msg","amount","receiver_id"]
+        },
+        "reputation": 78.8
+    },
+    {
+        "name": "priceoracle_near_report_prices",
+        "description": "This function is used to report prices for different assets to the price oracle contract on the NEAR blockchain. The function takes a receiver ID, method name, and parsed arguments as input. The parsed arguments include a list of prices for different assets, where each price includes the asset ID and its corresponding price.",
+        "receiver_id": "priceoracle.near",
+        "method_name": "report_prices",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "prices": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "asset_id": {
+                                "type": "string"
+                            },
+                            "price": {
+                                "type": "object",
+                                "properties": {
+                                    "multiplier": {
+                                        "type": "string"
+                                    },
+                                    "decimals": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "reputation": 61.86
+    },
+    {
+        "name": "jars_sweat_claim_total",
+        "description": "This is a pandas DataFrame object with one row and three columns: \"receiver_id\", \"method_name\", and \"args_parsed\". \n\nThe \"receiver_id\" column contains the value \"jars.sweat\". \n\nThe \"method_name\" column contains the value \"claim_total\". \n\nThe \"args_parsed\" column contains a dictionary with one key-value pair: \"detailed\" set to true.",
+        "receiver_id": "jars.sweat",
+        "method_name": "claim_total",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "detailed": {
+                    "type": "number"
+                }
+            }
+        },
+        "reputation": 56.63
+    },
+    {
+        "name": "lockup_2023_sweat_claim",
+        "description": "The function is a claim associated with the lockup-2023.sweat receiver. It does not require any arguments.",
+        "receiver_id": "lockup-2023.sweat",
+        "method_name": "claim",
+        "parameters": {
+            "type": "object",
+            "properties": {}
+        },
+        "reputation": 52.79
+    },
+    {
+        "name": "staking_pool_sweatmint_near_claim_stake_rewa",
+        "description": "This function is a claim_stake_reward method call to the staking-pool.sweatmint.near contract. The staking_package_id argument is passed as 3469.",
+        "receiver_id": "staking-pool.sweatmint.near",
+        "method_name": "claim_stake_reward",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "staking_package_id": {
+                    "type": "number"
+                }
+            }
+        },
+        "reputation": 45.19
+    },
+    {
+        "name": "wallet_kaiching_ft_transfer",
+        "description": "The function is a transfer of a certain amount of a specific token from one wallet to another using ft_transfer.",
+        "receiver_id": "wallet.kaiching",
+        "method_name": "ft_transfer",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "receiver_id": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "memo": {
+                    "type": "string"
+                }
+            },
+            "required":["memo","amount","receiver_id"]
+        },
+        "reputation": 39.56
+    },
+    {
+        "name": "priceoracle_near_oracle_call",
+        "description": "This function is a call to the price oracle contract. It specifies the receiver ID as contract.main.burrow.near and includes additional arguments in a parsed format. The method name for the call is oracle_call.",
+        "receiver_id": "priceoracle.near",
+        "method_name": "oracle_call",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "receiver_id": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "reputation": 35.85
+    }
+    ]
