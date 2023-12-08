@@ -187,7 +187,9 @@ async function onMessage(data) {
         const account = await calimeroConnection.account(BOT_ACCOUNT);
         console.log(account);
 
-        let encrypted = encrypt(answer, AES_KEY)
+        // Without this multiline replies from chatGPT are hard to read, as it all gets shown in one line on Calimero chat
+        let htmlAnswer = answer.replace(/(?:\r\n|\r|\n)/g, '<br>');
+        let encrypted = encrypt(htmlAnswer, AES_KEY)
 
         let txHash;
         let signedTx;
