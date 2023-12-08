@@ -1,0 +1,2 @@
+DEFINE_NEAR_METHOD(get_flights)
+DEFINE_NEAR_METHOD(purchase_flight)
